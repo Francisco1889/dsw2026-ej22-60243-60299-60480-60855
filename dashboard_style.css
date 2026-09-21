@@ -18,6 +18,16 @@
   left: -200px;
 }
 
+.dashboard-container nav.open{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 200px;
+  background-color: #f4f4f4;
+  left: 0;
+}
+
+
 .dashboard-container nav ul {
   list-style: none;
   padding: 0;
