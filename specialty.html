@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nueva especialidad | Gestor de turnos</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="dashboard_style.css">
+  <script src="specialty.js" defer></script>
+</head>
+
+<body>
+  <div class="dashboard-container">
+    <header>
+      <span>Portal Admin</span>
+      <div>
+        <button id="botonmenu" class="menu" type="button" aria-label="Abrir menú">&#9776;</button>
+        <button id="logout">Cerrar Sesión</button>
+      </div>
+    </header>
+    <nav id="sidebar">
+      <ul>
+        <li><a href="#">Panel Control</a></li>
+        <li><a href="dashboard.html">Especialidades</a></li>
+        <li><a href="specialty.html" aria-current="page">Nueva especialidad</a></li>
+      </ul>
+    </nav>
+    <main>
+      <div class="page-header">
+        <div>
+          <h1>Nueva Especialidad</h1>
+          <p class="page-description">Completá los datos para crear una especialidad.</p>
+        </div>
+        <a href="dashboard.html" class="add-button">Volver</a>
+      </div>
+      <section class="specialties-panel">
+        <form id="specialty-form" novalidate>
+          <label for="name">Nombre</label>
+          <input id="name" name="name" type="text">
+          <p id="name-error" class="form-error"></p>
+
+          <label for="description">Descripción</label>
+          <textarea id="description" name="description" rows="4"></textarea>
+          <p id="description-error" class="form-error"></p>
+
+          <button type="submit">Guardar</button>
+        </form>
+      </section>
+    </main>
+    <footer>Gestor de turnos &copy; 2026</footer>
+  </div>
+</body>
+
+</html>
