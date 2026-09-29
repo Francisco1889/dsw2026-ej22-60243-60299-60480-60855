@@ -12,7 +12,42 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const tableBody = document.getElementById('specialties-table-body');
   const message = document.getElementById('specialties-message');
+  const searchForm = document.getElementById('specialties-search-form');
+  const searchInput = document.getElementById('specialties-search');
+  const searchButton = searchForm.querySelector('button');
   let specialties = [];
+
+  function renderSpecialties(items) {
+    const fragment = document.createDocumentFragment();
+
+    items.forEach((specialty) => {
+      const row = document.createElement('tr');
+      const nameCell = document.createElement('td');
+      const descriptionCell = document.createElement('td');
+
+      nameCell.textContent = specialty.name;
+      descriptionCell.textContent = specialty.description;
+      row.append(nameCell, descriptionCell);
+      fragment.append(row);
+    });
+
+    tableBody.replaceChildren(fragment);
+    message.textContent = items.length === 0 ? 'No se encontraron especialidades.' : '';
+    message.hidden = items.length > 0;
+  }
+
+  function normalizeText(value) {
+    return value.toLocaleLowerCase('es').normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  }
+
+  searchForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const searchTerm = normalizeText(searchInput.value.trim());
+    const results = specialties.filter((specialty) =>
+      normalizeText(specialty.name).includes(searchTerm)
+    );
+    renderSpecialties(results);
+  });
 
   async function loadSpecialties() {
     try {
@@ -28,21 +63,8 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       specialties = data;
-      const fragment = document.createDocumentFragment();
-
-      specialties.forEach((specialty) => {
-        const row = document.createElement('tr');
-        const nameCell = document.createElement('td');
-        const descriptionCell = document.createElement('td');
-
-        nameCell.textContent = specialty.name;
-        descriptionCell.textContent = specialty.description;
-        row.append(nameCell, descriptionCell);
-        fragment.append(row);
-      });
-
-      tableBody.replaceChildren(fragment);
-      message.hidden = true;
+      renderSpecialties(specialties);
+      searchButton.disabled = false;
     } catch (error) {
       console.error('No se pudieron cargar las especialidades:', error);
       message.textContent = 'No se pudieron cargar las especialidades.';
