@@ -45,9 +45,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (isValid) {
-      const specialty = { name, description };
-      console.log(specialty);
-      form.reset();
+       const specialty = { name, description };
+       saveSpecialty(specialty);
+       console.log("Nueva especialidad:", specialty);
+       window.location.href = 'dashboard.html';
     }
   });
 });

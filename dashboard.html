@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Especialidades | Gestor de turnos</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="dashboard_style.css">
-  <script src="dashboard.js" defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Especialidades | Gestor de turnos</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="dashboard_style.css">
+    <script src="storage.js" defer></script>
+    <script src="dashboard.js" defer></script>
 </head>
 <body>
   <div class="dashboard-container">
@@ -33,25 +34,30 @@
   <a href="specialty.html" class="add-button">+ Nueva Especialidad</a>
 </div>
       <section class="specialties-panel" aria-label="Listado de especialidades">
-        <form id="specialties-search-form" role="search">
-          <label for="specialties-search">Buscar por nombre</label>
-          <div class="search-controls">
-            <input id="specialties-search" name="name" type="search" placeholder="Buscar especialidad...">
-            <button type="submit" disabled>Buscar</button>
+          <form id="specialties-search-form" role="search">
+              <label for="specialties-search">Buscar por nombre</label>
+              <div class="search-controls">
+                  <input id="specialties-search" name="name" type="search" placeholder="Buscar especialidad...">
+                  <button type="submit" disabled>Buscar</button>
+              </div>
+          </form>
+          <p id="specialties-message" role="status" hidden></p>
+          <div class="table-container">
+              <table>
+                  <thead>
+                      <tr>
+                          <th scope="col">Nombre</th>
+                          <th scope="col">Descripción</th>
+                      </tr>
+                  </thead>
+                  <tbody id="specialties-table-body"></tbody>
+              </table>
           </div>
-        </form>
-        <p id="specialties-message" role="status" hidden></p>
-        <div class="table-container">
-          <table>
-            <thead>
-              <tr>
-                <th scope="col">Nombre</th>
-                <th scope="col">Descripción</th>
-              </tr>
-            </thead>
-            <tbody id="specialties-table-body"></tbody>
-          </table>
-        </div>
+          <div id="pagination-controls" style="display: flex; justify-content: center; align-items: center; gap: 1rem; padding: 1rem;">
+              <button id="btnPrev" type="button" style="padding: 0.5rem 1rem; cursor: pointer;">Anterior</button>
+              <span id="pageInfo">Página 1</span>
+              <button id="btnNext" type="button" style="padding: 0.5rem 1rem; cursor: pointer;">Siguiente</button>
+          </div>
       </section>
     </main>
     <footer>Gestor de turnos &copy; 2026</footer>
